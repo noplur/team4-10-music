@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../tasker"
+		},
+		{
+			"path": "../myportfolio"
+		},
+		{
+			"path": "../quiz"
+		},
+		{
+			"path": "../colorStyles"
+		},
+		{
+			"path": "../../../Coding/kantina"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "team4-10-music"
+	}
+}
