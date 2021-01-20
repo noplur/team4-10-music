@@ -101,15 +101,22 @@ main h1 {
     box-shadow: 1px 1px 5px 2px var(--color-10);
 }
 
+/*CARDS*/
+
 #artist-box {
     background-color: var(--color-4);
-    /*This makes this card not display until a genre is selected
+    /*This makes this card not display until a genre is selected*/
     /* display: none; */
 }
 
 #song-box{
     background-color: var(--color-11);
-    /*This makes this card not display until a genre is selected
+    /*This makes this card not display until a genre is selected*/
+    /* display: none; */
+}
+
+#history-box {
+    /*This makes this card not display until a genre is selected*/
     /* display: none; */
 }
 
