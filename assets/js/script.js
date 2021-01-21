@@ -37,24 +37,24 @@ var historyBoxEl = document.getElementById('history-box');
 
 
 artistRow1El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+    songBoxEl.style.display = "block";
 
 });
 
 artistRow2El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+    songBoxEl.style.display = "block";
 });
 
 artistRow3El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+    songBoxEl.style.display = "block";
 });
 
 artistRow4El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+    songBoxEl.style.display = "block";
 });
 
 artistRow5El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+    songBoxEl.style.display = "block";
 });
 
 songRow1El.addEventListener("click", function() {
@@ -76,5 +76,3 @@ songRow4El.addEventListener("click", function() {
 songRow5El.addEventListener("click", function() {
 
 });
-
-
