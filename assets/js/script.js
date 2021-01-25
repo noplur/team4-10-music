@@ -2,6 +2,7 @@
 
 var genre = document.getElementById("select-genre")
 var artist
+var band
 console.log(genre.value);
 
 
@@ -81,7 +82,7 @@ var displayArtistName = function(genre) {
 
     // display artist name
 
-    var artistName = $("<p>").addClass("artist-name").attr("id", genre.data[0 + i].id).text(genre.data[0 + i].name)
+    var artistName = $("<p>").addClass("artist-name").attr("id", genre.data[0 + i].id).attr("name", genre.data[0 + i].name).text(genre.data[0 + i].name)
 
     // append artistName onto newCard to display on page
 
@@ -100,12 +101,16 @@ $("#artist-display").click(function(event) {
 
     artist = (event.target.id);
     console.log(artist)
-    
+
+    // targets the text content and converts text content into band
+
+    band = (event.target.textContent);
+    console.log(band)
+  
     // starts function to fetch song names based on artist
     getSongName(artist);
     
   });
- 
 
 // function to fetch song names based on artist
 
@@ -136,17 +141,23 @@ var getSongName = function(artist) {
         var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
         songDisplayTitleContainerEl.innerHTML = '';
 })
-};
+}; 
 
 // function to display song names
+// var artistText = document.getElementById("#artist-name-row")
 
 var displaySongName = function (artist) {
     console.log(artist)
-
+    
   // add You Picked title when artistName is selected. Title includes h3 header
 
   var songTitle = $("<h3>").addClass("display-song-title").attr("class", "you-picked").text("You Picked:");
   $("#song-display-title").append(songTitle);
+
+  // add band title when artistName is selected. Title includes h4 header
+
+  var artistTitleDisplay = $("<h4>").addClass("artist-name-display").text(this.band);
+  $("#song-display-title").append(artistTitleDisplay);
 
   // displays 5 separate rows
   for (i = 0; i < 5; i++) {
