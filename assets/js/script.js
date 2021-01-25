@@ -2,7 +2,6 @@
 
 var genre = document.getElementById("select-genre")
 var artist
-var band
 console.log(genre.value);
 
 
