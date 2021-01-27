@@ -151,6 +151,11 @@ var getSongName = function(artist) {
 
         var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
         songDisplayTitleContainerEl.innerHTML = '';
+
+        var historyDisplayTitleContainerEl = document.querySelector("#history-display-title");
+       historyDisplayTitleContainerEl.innerHTML = '';
+
+
 })
 }; 
 
