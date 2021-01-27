@@ -81,6 +81,7 @@ var displayArtistName = function(genre) {
     // add Results title when genre is selected. Title includes h3 header
 
     var artistTitle = $("<h3>").addClass("artist-display").attr("class", "results-title").text("Results:");
+  
   $("#artist-display-title").append(artistTitle);
   
    // displays 5 separate rows
@@ -151,6 +152,11 @@ var getSongName = function(artist) {
 
         var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
         songDisplayTitleContainerEl.innerHTML = '';
+
+        var historyDisplayTitleContainerEl = document.querySelector("#history-display-title");
+       historyDisplayTitleContainerEl.innerHTML = '';
+
+
 })
 }; 
 
@@ -174,7 +180,10 @@ var displaySongName = function (artist) {
 
   // add band title when artistName is selected to history display box. Title includes h4 header
 
-  var artistHistoryDisplay = $("<h4>").addClass("historyList").text(this.band);
+  var historyTitle = $("<h3>").addClass("display-history-title").attr("class", "history-title").text("Previous Artists Selected:");
+  $("#history-display-title").append(historyTitle);
+
+  var artistHistoryDisplay = $("<h4>").addClass("name artist-list-item-history").text(this.band);
   $("#history-display").append(artistHistoryDisplay);
 
   // displays 5 separate rows
