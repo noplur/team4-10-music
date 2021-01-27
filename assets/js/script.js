@@ -3,6 +3,7 @@
 var genre = document.getElementById("select-genre")
 var artistBoxDisplayEl = document.getElementById("artist-box");
 var songBoxDisplayEl = document.getElementById("song-box");
+var historyBoxDisplayEl = document.getElementById("history-box");
 var artist
 console.log(genre.value);
 
@@ -151,6 +152,8 @@ var getSongName = function(artist) {
 var displaySongName = function (artist) {
     console.log(artist)
     songBoxDisplayEl.style.display = "block";
+    historyBoxDisplayEl.style.display = "block";
+
   // add You Picked title when artistName is selected. Title includes h3 header
 
   var songTitle = $("<h3>").addClass("display-song-title").attr("class", "you-picked").text("You Picked:");
