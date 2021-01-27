@@ -81,7 +81,7 @@ var displayArtistName = function(genre) {
 
     // display artist name
 
-    var artistName = $("<p>").addClass("artist-name").attr("id", genre.data[0 + i].id).attr("name", genre.data[0 + i].name).text(genre.data[0 + i].name)
+    var artistName = $("<p>").addClass("artist-name row").attr("id", genre.data[0 + i].id).attr("name", genre.data[0 + i].name).text(genre.data[0 + i].name)
 
     // append artistName onto newCard to display on page
 
@@ -168,7 +168,7 @@ var displaySongName = function (artist) {
 
   // display track name
 
-  var songName = $("<p>").addClass("song-name").text(artist.data[0 + i].title)
+  var songName = $("<p>").addClass("song-name row").text(artist.data[0 + i].title)
 
   // append songName onto newSongCard to display track onto page
 
