@@ -98,6 +98,7 @@ var displayArtistName = function(genre) {
     newCard.append(artistName)
 }
 };
+
 // click event for artist names
 
 $("#artist-display").click(function(event) {
@@ -173,7 +174,7 @@ var displaySongName = function (artist) {
 
   // add band title when artistName is selected to history display box. Title includes h4 header
 
-  var artistHistoryDisplay = $("<h4>").addClass("name artist-list-item-history").text(this.band);
+  var artistHistoryDisplay = $("<h4>").addClass("historyList").text(this.band);
   $("#history-display").append(artistHistoryDisplay);
 
   // displays 5 separate rows
