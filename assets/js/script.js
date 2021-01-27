@@ -1,80 +1,177 @@
-//This is the Genre selector at the very beginning, will need to go to the artistBoxEl and display the appropriate artists based on genre selection
-var selectGenreEl = document.getElementById('select-genre-style-box');
+// global variables
 
-//Results Card for Artist
-var artistBoxEl = document.getElementById('artist-box');
-
-//Where artists will be displayed, and buttons will need to be created to go to the songBoxEl with the appropraite artist
-var artistRow1El = document.getElementById('artist-1-row');
-var artistRow2El = document.getElementById('artist-2-row');
-var artistRow3El = document.getElementById('artist-3-row');
-var artistRow4El = document.getElementById('artist-4-row');
-var artistRow5El = document.getElementById('artist-5-row');
-var artistCount = 0;
-
-//Results Card for Songs
-var songBoxEl = document.getElementById('song-box');
-
-//Where songs sit after selecting artist, and buttons will need to be created to go to the songBoxEl with the appropraite artist
-var songRow1El = document.getElementById('song-1-row');
-var songRow2El = document.getElementById('song-2-row');
-var songRow3El = document.getElementById('song-3-row');
-var songRow4El = document.getElementById('song-4-row');
-var songRow5El = document.getElementById('song-5-row');
-var songCount = 0;
-
-//History Card
-var historyBoxEl = document.getElementById('history-box');
-
-//Genre Selector
-// var genreOptions = selectGenreEl.querySelectorAll("option");
-// genreOptions.addEventListener("changed...", function(){
-
-// })
-
-//Will need to make aritstBoxEl, songBoxEl, and historyBoxEl appear and disappear after certain functions
-//similar to this
+var genre = document.getElementById("select-genre")
+var artist
+console.log(genre.value);
 
 
-artistRow1El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
+// change event for genre drop down options
 
-});
+$("#select-genre").change(function(event) {
 
-artistRow2El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
-});
+    // prevent page from refreshing
+  
+    event.preventDefault();
+  
+    // targets the genreName text element
 
-artistRow3El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
-});
+    var genreName = (event.target.textContent);
+    
+    // restarts function to get function to get artist names based on genre
 
-artistRow4El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
-});
+      getArtistName(genreName);
+    
+  });
 
-artistRow5El.addEventListener("click", function() {
-    songBoxEl.style.display: "block";
-});
+  // function to get artist names based on genre
 
-songRow1El.addEventListener("click", function() {
+var getArtistName = function(genreName) {
 
-});
+    // format the Deezer api url
 
-songRow2El.addEventListener("click", function() {
+    var apiUrl = "https://cors-anywhere.herokuapp.com/https://api.deezer.com/genre/" + genre.value + "/artists";
 
-});
+    // make a request to the url
+    
+    fetch(apiUrl)
+    .then(function(response) {
+    // request was successful
+    if (response.ok) {
+        response.json().then(function(genre) {
+        displayArtistName(genre);
+        
+        }
+        )}
+    })
+    .then(function(response) {
 
-songRow3El.addEventListener("click", function() {
+        // clears artist-box so elements will not repeat when another genre is selected.
+  
+        var artistDisplayContainerEl = document.querySelector("#artist-display");
+        artistDisplayContainerEl.innerHTML = '';
 
-});
+        var artistDisplayTitleContainerEl = document.querySelector("#artist-display-title");
+        artistDisplayTitleContainerEl.innerHTML = '';
 
-songRow4El.addEventListener("click", function() {
+        // clears song-box so elements will not repeat when another artist is clicked.
+  
+        var songDisplayContainerEl = document.querySelector("#song-display");
+        songDisplayContainerEl.innerHTML = '';
 
-});
+        var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
+        songDisplayTitleContainerEl.innerHTML = '';
+})
+};
 
-songRow5El.addEventListener("click", function() {
+// function to display artist names
 
-});
+var displayArtistName = function(genre) {
+    console.log(genre)
+    
+    // add Results title when genre is selected. Title includes h3 header
 
+    var artistTitle = $("<h3>").addClass("artist-display").attr("class", "results-title").text("Results:");
+  $("#artist-display-title").append(artistTitle);
+  
+   // displays 5 separate rows
+   for (i = 0; i < 5; i++) {
+       // creates the rows artist-name-row ID
+    var newCard = $("<div>").attr("new-card", "artist-name-row");
+    $("#artist-display").append(newCard);
 
+    // display artist name
+
+    var artistName = $("<p>").addClass("artist-name").attr("id", genre.data[0 + i].id).attr("name", genre.data[0 + i].name).text(genre.data[0 + i].name)
+
+    // append artistName onto newCard to display on page
+
+    newCard.append(artistName)
+}
+};
+// click event for artist names
+
+$("#artist-display").click(function(event) {
+
+    // prevent page from refreshing
+  
+    event.preventDefault();
+  
+    // targets the id element and converts element into artist
+
+    artist = (event.target.id);
+    console.log(artist)
+
+    // targets the text content and converts text content into band
+
+    band = (event.target.textContent);
+    console.log(band)
+  
+    // starts function to fetch song names based on artist
+    getSongName(artist);
+    
+  });
+
+// function to fetch song names based on artist
+
+var getSongName = function(artist) {
+  console.log(artist)
+    // format the Deezer api url
+
+    var apiUrl = "https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/" + artist + "/top/";
+
+    // make a request to the url
+    
+    fetch(apiUrl)
+    .then(function(response) {
+    // request was successful
+    if (response.ok) {
+        response.json().then(function(artist) {
+        displaySongName(artist);
+        }
+        )}
+    })
+    .then(function(response) {
+
+        // clears song-box so elements will not repeat when another artist is clicked.
+  
+        var songDisplayContainerEl = document.querySelector("#song-display");
+        songDisplayContainerEl.innerHTML = '';
+
+        var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
+        songDisplayTitleContainerEl.innerHTML = '';
+})
+}; 
+
+// function to display song names
+// var artistText = document.getElementById("#artist-name-row")
+
+var displaySongName = function (artist) {
+    console.log(artist)
+    
+  // add You Picked title when artistName is selected. Title includes h3 header
+
+  var songTitle = $("<h3>").addClass("display-song-title").attr("class", "you-picked").text("You Picked:");
+  $("#song-display-title").append(songTitle);
+
+  // add band title when artistName is selected. Title includes h4 header
+
+  var artistTitleDisplay = $("<h4>").addClass("artist-name-display").text(this.band);
+  $("#song-display-title").append(artistTitleDisplay);
+
+  // displays 5 separate rows
+  for (i = 0; i < 5; i++) {
+
+  // creates the rows with song-display-row ID
+
+  var newSongCard = $("<div>").attr("new-card", "song-display-row");
+  $("#song-display").append(newSongCard);
+
+  // display track name
+
+  var songName = $("<p>").addClass("song-name").text(artist.data[0 + i].title)
+
+  // append songName onto newSongCard to display track onto page
+
+  newSongCard.append(songName)
+}
+}
