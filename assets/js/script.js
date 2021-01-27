@@ -1,6 +1,8 @@
 // global variables
 
 var genre = document.getElementById("select-genre")
+var artistBoxDisplayEl = document.getElementById("artist-box");
+var songBoxDisplayEl = document.getElementById("song-box");
 var artist
 console.log(genre.value);
 
@@ -18,6 +20,7 @@ $("#select-genre").change(function(event) {
     var genreName = (event.target.textContent);
     
     // restarts function to get function to get artist names based on genre
+
 
       getArtistName(genreName);
     
@@ -39,7 +42,6 @@ var getArtistName = function(genreName) {
     if (response.ok) {
         response.json().then(function(genre) {
         displayArtistName(genre);
-        
         }
         )}
     })
@@ -73,7 +75,8 @@ var getArtistName = function(genreName) {
 
 var displayArtistName = function(genre) {
     console.log(genre)
-    
+    artistBoxDisplayEl.style.display = "block";
+
     // add Results title when genre is selected. Title includes h3 header
 
     var artistTitle = $("<h3>").addClass("artist-display").attr("class", "results-title").text("Results:");
@@ -87,7 +90,7 @@ var displayArtistName = function(genre) {
 
     // display artist name
 
-    var artistName = $("<p>").addClass("artist-name row").attr("id", genre.data[0 + i].id).attr("data-name", genre.data[0 + i].name).text(genre.data[0 + i].name)
+    var artistName = $("<p>").addClass("artist-name row-style").attr("id", genre.data[0 + i].id).attr("data-name", genre.data[0 + i].name).text(genre.data[0 + i].name)
 
     // append artistName onto newCard to display on page
 
@@ -154,7 +157,7 @@ var getSongName = function(artist) {
 
 var displaySongName = function (artist) {
     console.log(artist)
-    
+    songBoxDisplayEl.style.display = "block";
   // add You Picked title when artistName is selected. Title includes h3 header
 
   var songTitle = $("<h3>").addClass("display-song-title").attr("class", "you-picked").text("You Picked:");
@@ -180,7 +183,7 @@ var displaySongName = function (artist) {
 
   // display track name
 
-  var songName = $("<p>").addClass("song-name row").text(artist.data[0 + i].title)
+  var songName = $("<p>").addClass("song-name row-style").text(artist.data[0 + i].title)
 
   // append songName onto newSongCard to display track onto page
 
