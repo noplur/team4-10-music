@@ -60,6 +60,12 @@ var getArtistName = function(genreName) {
 
         var songDisplayTitleContainerEl = document.querySelector("#song-display-title");
         songDisplayTitleContainerEl.innerHTML = '';
+
+        // clears history-box so elements will not repeat when another artist is clicked.
+
+        var historyBoxContainerEl = document.querySelector("#history-display-title");
+        historyBoxContainerEl.innerHTML = '';
+
 })
 };
 
@@ -81,7 +87,7 @@ var displayArtistName = function(genre) {
 
     // display artist name
 
-    var artistName = $("<p>").addClass("artist-name row").attr("id", genre.data[0 + i].id).attr("name", genre.data[0 + i].name).text(genre.data[0 + i].name)
+    var artistName = $("<p>").addClass("artist-name row").attr("id", genre.data[0 + i].id).attr("data-name", genre.data[0 + i].name).text(genre.data[0 + i].name)
 
     // append artistName onto newCard to display on page
 
@@ -110,6 +116,7 @@ $("#artist-display").click(function(event) {
     getSongName(artist);
     
   });
+
 
 // function to fetch song names based on artist
 
@@ -158,6 +165,11 @@ var displaySongName = function (artist) {
   var artistTitleDisplay = $("<h4>").addClass("artist-name-display").text(this.band);
   $("#song-display-title").append(artistTitleDisplay);
 
+  // add band title when artistName is selected to history display box. Title includes h4 header
+
+  var artistHistoryDisplay = $("<h4>").addClass("name artist-list-item-history").text(this.band);
+  $("#history-display").append(artistHistoryDisplay);
+
   // displays 5 separate rows
   for (i = 0; i < 5; i++) {
 
@@ -174,4 +186,5 @@ var displaySongName = function (artist) {
 
   newSongCard.append(songName)
 }
+
 }
