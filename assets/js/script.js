@@ -82,8 +82,13 @@ var displayArtistName = function(genre) {
 
     var artistTitle = $("<h3>").addClass("artist-display").attr("class", "results-title").text("Results:");
   
+    // add artistTitle to #artist-display-title
   $("#artist-display-title").append(artistTitle);
+
+  // variable for genreDataArray
+
   var genreDataArr = randomArtist(genre.data)
+
    // displays 5 separate rows
    for (i = 0; i < 5; i++) {
        // creates the rows artist-name-row ID
@@ -91,6 +96,7 @@ var displayArtistName = function(genre) {
     $("#artist-display").append(newCard);
     // display artist name
 
+    // variable for genreData sets i within genreDataArray 
     var genreData = genreDataArr[i]
     var artistName = $("<p>").addClass("artist-name row-style").attr("id", genreData.id).attr("data-name", genreData.name).text(genreData.name)
 
@@ -136,7 +142,7 @@ $("#artist-display").click(function(event) {
     artist = (event.target.id);
     console.log(artist)
 
-    // targets the text content and converts text content into band
+    // targets the data-name element and converts element band
 
     band = (event.target.getAttribute("data-name"));
     console.log(band)
@@ -201,7 +207,7 @@ var displaySongName = function (artist) {
   var artistTitleDisplay = $("<h4>").addClass("artist-name-display").text(this.band);
   $("#song-display-title").append(artistTitleDisplay);
 
-  // add band title when artistName is selected to history display box. Title includes h4 header
+  // add Previous Artist Selected title text historyTitle display box. Title includes h3 header
 
   var historyTitle = $("<h3>").addClass("display-history-title").attr("class", "history-title").text("Previous Artists Selected:");
   $("#history-display-title").append(historyTitle);
@@ -226,7 +232,11 @@ var displaySongName = function (artist) {
 
   // clears out history-display element
   $("#history-display").html("")
+
+  // for loop for newLocal
+
   for (i = 0; i < newLocal.length; i++) {
+    // add band title (from newLocal) when artistName is selected to history display box. Title includes h4 header
     var artistHistoryDisplay = $("<h4>").addClass("name artist-list-item-history").text(newLocal[i]);
   $("#history-display").append(artistHistoryDisplay);
   }
